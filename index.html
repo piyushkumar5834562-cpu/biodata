@@ -1,0 +1,730 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Name | Personal Portfolio</title>
+    <meta name="description" content="Welcome to my personal portfolio. Explore my projects, skills and connect with me.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080811;
+            color: #f5f5ff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.20;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-one {
+            background: #703bff;
+            top: 5%;
+            left: -150px;
+        }
+
+        .glow-two {
+            background: #087cff;
+            bottom: 0;
+            right: -150px;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(8, 8, 17, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #c5c5d6;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a78bfa;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            border-radius: 30px;
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.08);
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 70px);
+            line-height: 1.12;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 560px;
+            color: #aaaabd;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            color: white;
+            background: linear-gradient(120deg, #7c3aed, #2563eb);
+            box-shadow: 0 5px 25px rgba(96, 77, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(96, 77, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid #343449;
+            background: #11111d;
+            color: #eeeeff;
+        }
+
+        /* PROFILE PHOTO */
+
+        .photo-area {
+            flex: 0 0 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame {
+            width: 290px;
+            height: 290px;
+            padding: 5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #2563eb, #a78bfa);
+            box-shadow: 0 0 55px rgba(124, 58, 237, 0.25);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 50%;
+            background: #171725;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(29px, 4vw, 42px);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #9696ad;
+            font-size: 14px;
+        }
+
+        .about-card {
+            max-width: 850px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 18px;
+            background: rgba(19, 19, 34, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #bdbdd0;
+            text-align: center;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .skill {
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #131323;
+            border: 1px solid #28283f;
+            color: #d8d5ff;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .skill:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-4px);
+            box-shadow: 0 5px 22px rgba(139, 92, 246, 0.12);
+        }
+
+        /* PROJECTS */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            padding: 28px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #141425, #0d0d18);
+            border: 1px solid #26263b;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: #7856db;
+            box-shadow: 0 12px 35px rgba(78, 54, 150, 0.13);
+        }
+
+        .project-icon {
+            font-size: 30px;
+            margin-bottom: 14px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .project-card p {
+            color: #a4a4ba;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #b6a0ff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .project-link:hover {
+            color: #60a5fa;
+        }
+
+        /* SOCIAL LINKS */
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+            padding: 14px 20px;
+            background: #141423;
+            border: 1px solid #2b2b42;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .social-link:hover {
+            background: #211735;
+            border-color: #8b5cf6;
+            transform: translateY(-4px);
+        }
+
+        .contact-text {
+            text-align: center;
+            color: #aaaabd;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid #222233;
+            color: #85859a;
+            font-size: 13px;
+        }
+
+        /* SCROLL ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 760px) {
+            nav {
+                padding: 16px 0;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .hero {
+                min-height: auto;
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 35px;
+                padding-top: 55px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .photo-area {
+                flex: auto;
+            }
+
+            .photo-frame {
+                width: 220px;
+                height: 220px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 23px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">My<span>Profile.</span></a>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero container" id="home">
+
+            <div class="hero-content">
+                <div class="tag">✨ Welcome to my digital space</div>
+
+                <h1>
+                    Hi, I'm <span class="gradient-text">Your Name</span><br>
+                    <span class="gradient-text">Developer & Creator</span>
+                </h1>
+
+                <p>
+                    I love exploring technology, building creative projects,
+                    and turning ideas into reality. Welcome to my personal
+                    corner of the internet.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Projects ↗
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Connect With Me
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-area">
+                <div class="photo-frame">
+                    <img src="c:\Users\PIYUSH KAMBOJ\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 104606.png" alt="My profile photo">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container reveal">
+
+                <div class="section-heading">
+                    <h2>About <span class="gradient-text">Me</span></h2>
+                    <p>A little introduction about who I am</p>
+                </div>
+
+                <div class="about-card">
+                    I'm someone who enjoys learning new things, experimenting
+                    with technology, and creating useful digital experiences.
+                    I believe every project is an opportunity to learn,
+                    improve, and build something better.
+                    <br><br>
+                    This website is my personal space to showcase my work,
+                    skills, interests, and ways to connect with me.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <div class="container reveal">
+
+                <div class="section-heading">
+                    <h2>My <span class="gradient-text">Skills</span></h2>
+                    <p>Technologies and tools I'm exploring</p>
+                </div>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Flask</span>
+                    <span class="skill">Git & GitHub</span>
+                    <span class="skill">Web Development</span>
+                    <span class="skill">Problem Solving</span>
+                    <span class="skill">AI Tools</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container reveal">
+
+                <div class="section-heading">
+                    <h2>Featured <span class="gradient-text">Projects</span></h2>
+                    <p>Some things I've been working on</p>
+                </div>
+
+                <div class="project-grid">
+
+                    <article class="project-card">
+                        <div class="project-icon">🛡️</div>
+
+                        <h3>CampusShield</h3>
+
+                        <p>
+                            A campus safety web application designed to help
+                            users report safety concerns and access
+                            campus-related safety information.
+                        </p>
+
+                        <a
+                            href="https://github.com/YOUR-USERNAME/CampusShield"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-link">
+                            View on GitHub ↗
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-icon">🚨</div>
+
+                        <h3>SAFEcheck</h3>
+
+                        <p>
+                            A safety-focused web project built around
+                            check-ins and trusted contacts to support
+                            personal safety.
+                        </p>
+
+                        <a
+                            href="https://github.com/piyushkumar5834562-cpu"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-link">
+                            View on GitHub ↗
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT / SOCIAL SECTION -->
+        <section id="contact">
+            <div class="container reveal">
+
+                <div class="section-heading">
+                    <h2>Let's <span class="gradient-text">Connect</span></h2>
+                    <p>Find me on my social platforms</p>
+                </div>
+
+                <p class="contact-text">
+                    Have an idea, want to collaborate, or just say hello?
+                    Feel free to connect.
+                </p>
+
+                <div class="social-grid">
+
+                    <a
+                        href="https://www.instagram.com/piyushkamboj20?srtk=MW43bXJnNnZ2b3VieA=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link">
+                        📸 Instagram
+                    </a>
+
+                    <a
+                        href="https://github.com/piyushkumar5834562-cpu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link">
+                        💻 GitHub
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/piyush-kamboj-b451732b2?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link">
+                        💼 LinkedIn
+                    </a>
+
+                    <a
+                        href="https://wa.me/qr/UWJJE4NMV25FE1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link">
+                        💬 WhatsApp
+                    </a>
+
+                    <a
+                        href="mailto:piyushkamboj744@gmail.com"
+                        class="social-link">
+                        ✉️ Email Me
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            © <span id="year"></span> Your Name. Made with 💜
+        </div>
+    </footer>
+
+    <script>
+        // Automatically update the copyright year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Reveal sections as they enter the screen
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries, currentObserver) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            currentObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+            revealElements.forEach((element) => {
+                observer.observe(element);
+            });
+        } else {
+            revealElements.forEach((element) => {
+                element.classList.add("visible");
+            });
+        }
+    </script>
+
+</body>
+</html>
+```
